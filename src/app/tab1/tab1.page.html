@@ -7,11 +7,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  <div class="post-container">
+    <div class="post-header">
+      <div class="profile-picture-container">
+        <img src="/assets/img/user-image.png" class="profile-picture">
+      </div>
+      <div class="post-info-container">
+        azzaaz
+      </div>
+    </div>
+    <div class="post-content"></div>
+    <div class="post-footer"></div>
+  </div>
   <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>
