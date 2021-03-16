@@ -20,8 +20,8 @@ jobs:
         with:
           node-version: 13.x
 
-      - name: Install Cordova
-        run: npm install -g cordova
+      - name: Install Capacitor
+        run: npm i -g @capacitor/core @capacitor/cli
 
       - name: Install Ionic cli
         run: npm install -g @ionic/cli
