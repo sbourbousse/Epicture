@@ -1,47 +1,52 @@
-# This is a basic workflow to help you get started with Actions
+name: Get Android APK
 
-name: CI
+on: [push, pull_request]
 
-# Controls when the action will run. 
-on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+    name: Build APK
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: checkout source
+        uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-          
-      - name: Push directory to another repository
-        uses: cpina/github-action-push-to-another-repository@v1.2
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      - name: setup java sdk
+        uses: actions/setup-java@v1
         with:
-          source-directory: '/'
-          destination-github-username: 'EpitechIT2020'
-          destination-repository-name: 'T-DEV-600-MPL-6-1-epicture-rayan.mediouni'
-          user-email: sbourbousse@gmail.com
+          java-version: '9.0.4'
 
+      - name: setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.x
+
+      - name: Install Cordova
+        run: npm install -g cordova
+
+      - name: Install Ionic cli
+        run: npm install -g @ionic/cli
+
+      - name: Install app dependencies
+        run: npm install
+
+      - name: build the app
+        run: npm run build
+
+      - name: remove existing folder if there 
+        run: rm -rf ./android
+
+      - name: Add to android
+        run: npx cap add android
+
+      - name: sync with source
+        run: npx cap sync
+
+      - name: Generate the Android App Apk
+        working-directory: ./android
+        run: bash ./gradlew assembleDebug --stacktrace
+
+      - name: Upload dev APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-dev
+          path: android/app/build/outputs/apk/debug/app-debug.apk
