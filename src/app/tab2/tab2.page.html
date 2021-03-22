@@ -1,17 +1,23 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-col size="6" *ngIf="photoService.photo">
+        <ion-img [src]="photoService.photo.webviewPath"></ion-img>
+  </ion-col>  
+  <div>
+    <div *ngIf="photoService.photo" class="image-action-container image-action-container-cancel">
+      <ion-fab-button class="remove-photo-button">
+        <ion-icon (click)="removePhotoFromGallery()" name="close-outline"></ion-icon>
+      </ion-fab-button>
+      <div class="image-confirm-container">
+        <ion-input placeholder="Entrez un titre"></ion-input>
+        <ion-fab-button class="remove-photo-button">
+          <ion-icon name="send-outline"></ion-icon>
+        </ion-fab-button>
+      </div>
+    </div>
+    <div *ngIf="!photoService.photo" class="image-action-container image-action-container-new">
+      <ion-fab-button (click)="addPhotoToGallery()" class="take-photo-button" >
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+    </div>
+  </div>
 </ion-content>
