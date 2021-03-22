@@ -1,0 +1,60 @@
+.post-container {
+    margin-bottom: 40px;
+    .post-header{
+        padding: 10px;
+        display:flex;
+        height: 87px;
+        .profile-picture-container {
+            width: 77px;
+            height: 77px;
+            .profile-picture {
+                border-radius: 50px;
+            }
+        }
+        .post-info-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            .profile-name {
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 24px;
+            }
+            .image-name {
+                font-style: normal;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 24px;
+            }
+        }
+    }
+    .post-content {
+        >img {
+            width: 100%;
+            height: auto;
+        }
+    }
+    .post-footer {
+        height: 20px;
+        display: flex;
+        padding: 0px 10px;
+        align-items: center;
+        
+        .post-published-date {
+            flex: 65%;
+        }
+        .post-likes-count {
+            flex: 35%;
+            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+
+            >div {
+                color: black;
+                font-weight: 600;
+                font-size: 16px;
+            }
+        }
+    }
+}

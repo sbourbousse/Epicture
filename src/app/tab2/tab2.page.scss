@@ -1,0 +1,27 @@
+
+
+.image-action-container {
+    position: absolute;
+    bottom: 100px;
+    width: 100%;
+    display: flex;
+
+    .take-photo-button {
+        
+    }
+    .remove-photo-button {
+
+    }
+    .image-confirm-container {
+        display: flex;
+    }
+}
+
+.image-action-container-cancel {
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-action-container-new {
+    justify-content: center;
+}
