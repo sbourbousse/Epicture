@@ -1,17 +1,36 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<div class="account-header-container">
+  <div class="account-info-container">
+    <img src="/assets/img/user-image.png" class="profile-picture">
+    <div class="profile-name">Sylvain Bourbousse</div>
+    <div class="profile-option">
+      <img src="/assets/icon/settings.svg" (click)="disconnect()">
+    </div>
+  </div>
+  <div class="tab-action-container">
+    <div class="single-tab-action" [class.active]="currentTab=='favorites'" (click)="changeTab('favorites')">
+      <img src="/assets/icon/heart_fill_inactive.svg">
+    </div>
+    <div class="single-tab-action" [class.active]="currentTab=='my-posts'" (click)="changeTab('my-posts')">
+      <img src="/assets/icon/gallery_inactive.svg">
+    </div>
+  </div>
+</div>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+<div *ngIf="currentTab=='favorites'">
+  <app-post></app-post>
+  <app-post></app-post>
+</div>
+<div *ngIf="currentTab=='my-posts'" class="my-posts-container">
+  <img src="/assets/img/post-image.png">
+  <img src="/assets/img/post-image.png">
+  <img src="/assets/img/post-image.png">
+  <img src="/assets/img/post-image.png">
+  <img src="/assets/img/post-image.png">
+  <img src="/assets/img/post-image.png">
+  <img src="/assets/img/post-image.png">
+  <img src="/assets/img/post-image.png">
+
+</div>
+
 </ion-content>
