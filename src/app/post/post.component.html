@@ -5,18 +5,18 @@
     </div>
     <div class="post-info-container">
       <div class="profile-name">Sylvain Bourbousse</div>
-      <div class="image-name">Titre de l'image</div>      
+      <div class="image-name">{{ (post.title.length>6)? (post.title | slice:0:60)+'...':(post.title) }}</div>      
     </div>
   </div>
   <div class="post-content">
-    <img src="/assets/img/post-image.png">
+    <img [src]="post.url">
   </div>
   <div class="post-footer">
     <div class="post-published-date">
-      Il y a 12 minutes
+      {{dateParse(post.date)}}
     </div>
     <div class="post-likes-count">
-      <div>100</div>
+      <div>{{post.favorite}}</div>
       <img src="/assets/icon/heart.svg">
     </div>
   </div>
